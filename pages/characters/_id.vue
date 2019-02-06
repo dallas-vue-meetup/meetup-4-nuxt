@@ -74,7 +74,7 @@ export default {
     return {
       title: `Star Wars Wiki - ${this.selected.name || this.selected.title}`,
       meta: [
-        { hid: 'og:image', name: 'og:image', content: `https://starwars-visualguide.com/assets/img/charcters/${this.selected.id}` }
+        { hid: 'og:image', name: 'og:image', content: `https://starwars-visualguide.com/assets/img/characters/${this.selected.id}.jpg` }
       ]
     }
   }
