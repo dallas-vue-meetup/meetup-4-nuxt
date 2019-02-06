@@ -33,7 +33,7 @@
       <v-toolbar-title v-text="title" />
     </v-toolbar>
     <v-content>
-      <v-container fill-height grid-list-md>
+      <v-container grid-list-xl>
         <nuxt />
       </v-container>
     </v-content>
