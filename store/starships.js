@@ -11,6 +11,7 @@ export const state = () => ({
 
 export const actions = {
   async FETCH_MANY({ commit }, urls) {
+    commit('SET_LOADED', false)
     const requests = urls.map(url => axios.get(url))
     const results = await axios.all(requests)
     const data = results.map(result => result.data)
@@ -19,6 +20,9 @@ export const actions = {
 }
 
 export const mutations = {
+  SET_LOADED(_state, loaded) {
+    _state.loaded = loaded
+  },
   SET_STARSHIPS(_state, data) {
     _state.starships = data.map(starship => ({ ...starship, id: getIdFromUrl(starship.url) }))
     _state.nextPage = data.next

@@ -6,16 +6,16 @@
         <character-bio :character="selected" />
       </entity-bio-card>
     </v-flex>
-    <v-flex xs12 v-if="selected">
+    <v-flex v-if="selected" xs12>
       <v-layout>
         <v-flex sm6 xs12>
-          <entity-list-card :entities="filmEntities" entity-type="films" title="Films" height="100%" />
+          <entity-list-card :entities="filmEntities" entity-type="films" title="Films" height="100%" :is-loading="!filmsLoaded" />
         </v-flex>
         <v-flex sm6 xs12>
           <v-layout column fill-height>
             <v-flex xs12>
-              <entity-list-card :entities="vehicles" entity-type="vehicles" title="Vehicles" :isLoading="!vehiclesLoaded" />
-              <entity-list-card :entities="starships" entity-type="starships" title="Starships" :isLoading="!starshipsLoaded" />
+              <entity-list-card :entities="vehicles" entity-type="vehicles" title="Vehicles" :is-loading="!vehiclesLoaded" />
+              <entity-list-card :entities="starships" entity-type="starships" title="Starships" :is-loading="!starshipsLoaded" />
             </v-flex>
           </v-layout>
         </v-flex>
@@ -43,9 +43,10 @@ export default {
     ...mapState('characters', [
       'selected'
     ]),
-    ...mapState('films', [
-      'films'
-    ]),
+    ...mapState('films', {
+      films: 'films',
+      filmsLoaded: 'loaded'
+    }),
     ...mapState('vehicles', {
       vehicles: 'vehicles',
       vehiclesLoaded: 'loaded'
@@ -64,10 +65,10 @@ export default {
   created() {
     this.$store.dispatch('vehicles/FETCH_MANY', this.selected.vehicles)
     this.$store.dispatch('starships/FETCH_MANY', this.selected.starships)
+    this.$store.dispatch('films/FETCH_MANY')
   },
   async fetch({ store, params }) {
     await store.dispatch('characters/FETCH_ONE', params.id)
-    await store.dispatch('films/FETCH_MANY')
   }
 }
 </script>
