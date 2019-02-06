@@ -1,0 +1,24 @@
+{
+  "name": "starwars-pedia",
+  "description": "A simple Star Wars Wiki using swapi, NuxtJs, and Vue",
+  "scripts": { },
+  "env": {
+    "NODE_ENV": {
+      "required": true
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "required": true
+    },
+    "HOST": {
+      "required": true
+    },
+    "ASSET_URL": {
+      "required": true
+    }
+  },
+  "formation": { },
+  "addons": [ ],
+  "buildpacks": [
+    { "url": "heroku/nodejs" }
+  ]
+}
