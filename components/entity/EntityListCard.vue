@@ -5,7 +5,7 @@
         {{ title }}
       </div>
     </v-card-title>
-    <loader :isLoading="isLoading" />
+    <loader :is-loading="isLoading" />
     <v-list v-if="entities">
       <v-list-tile
         v-for="(entity, idx) in entities"
@@ -22,7 +22,9 @@
 
         <v-list-tile-action>
           <v-btn icon>
-            <v-icon color="grey">open_in_new</v-icon>
+            <v-icon color="grey">
+              open_in_new
+            </v-icon>
           </v-btn>
         </v-list-tile-action>
       </v-list-tile>

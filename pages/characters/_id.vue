@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap>
-    <loader :isLoading="!selected" />
+    <loader :is-loading="!selected" />
     <v-flex v-if="selected" xs12>
       <entity-bio-card :entity="selected" entity-type="characters">
         <character-bio :character="selected" />
@@ -72,7 +72,10 @@ export default {
   },
   head() {
     return {
-      title: `Star Wars Wiki - ${this.selected.name || this.selected.title}`
+      title: `Star Wars Wiki - ${this.selected.name || this.selected.title}`,
+      meta: [
+        { hid: 'og:image', name: 'og:image', content: `https://starwars-visualguide.com/assets/img/characters/${this.selected.id}.jpg` }
+      ]
     }
   }
 }
