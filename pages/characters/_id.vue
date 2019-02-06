@@ -69,6 +69,11 @@ export default {
   },
   async fetch({ store, params }) {
     await store.dispatch('characters/FETCH_ONE', params.id)
+  },
+  head() {
+    return {
+      title: `Star Wars Wiki - ${this.selected.name || this.selected.title}`
+    }
   }
 }
 </script>
