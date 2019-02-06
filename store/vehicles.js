@@ -2,7 +2,7 @@ import axios from 'axios'
 import { getIdFromUrl } from '@/helpers/index'
 
 export const state = () => ({
-  films: [],
+  vehicles: [],
   nextPage: null,
   prevPage: null,
   count: 0,
@@ -10,10 +10,12 @@ export const state = () => ({
 })
 
 export const actions = {
-  async FETCH_MANY({ commit }) {
+  async FETCH_MANY({ commit }, urls) {
     commit('SET_LOADED', false)
-    const { data } = await axios.get(`https://swapi.co/api/films/`)
-    commit('SET_FILMS', data)
+    const requests = urls.map(url => axios.get(url))
+    const results = await axios.all(requests)
+    const data = results.map(result => result.data)
+    commit('SET_VEHICLES', data)
   }
 }
 
@@ -21,8 +23,8 @@ export const mutations = {
   SET_LOADED(_state, loaded) {
     _state.loaded = loaded
   },
-  SET_FILMS(_state, data) {
-    _state.films = data.results.map(film => ({ ...film, id: getIdFromUrl(film.url) }))
+  SET_VEHICLES(_state, data) {
+    _state.vehicles = data.map(vehicle => ({ ...vehicle, id: getIdFromUrl(vehicle.url) }))
     _state.nextPage = data.next
     _state.prevPage = data.previous
     _state.count = data.count
