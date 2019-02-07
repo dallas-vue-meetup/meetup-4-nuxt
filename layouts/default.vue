@@ -62,7 +62,7 @@ export default {
         {
           icon: 'people',
           title: 'Characters',
-          to: '/Characters'
+          to: '/characters'
         }
       ],
       miniVariant: false,
