@@ -7,7 +7,7 @@
       </entity-bio-card>
     </v-flex>
     <v-flex v-if="selected" xs12>
-      <v-layout>
+      <v-layout wrap>
         <v-flex sm6 xs12>
           <entity-list-card :entities="filmEntities" entity-type="films" title="Films" height="100%" :is-loading="!filmsLoaded" />
         </v-flex>

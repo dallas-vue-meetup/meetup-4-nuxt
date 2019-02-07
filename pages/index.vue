@@ -70,7 +70,7 @@
             color="primary"
             flat
             nuxt
-            to="/Characters"
+            to="/characters"
           >
             Continue
           </v-btn>
